@@ -15,7 +15,7 @@ case 2:
 exp all zeros
 E=1-Bias 
 M=f 
-to represent 0 (all bits zeros
+to represent 0 (all bits zeros  -0.0 and +0.0
 and represent numbers very close to 0.0
 
 case 3:
