@@ -1,2 +1,7 @@
+int hash(char *key, int tableSize) {
+	unsigned int hashVal = 0;
+	while (*key)
+		hashVal += (hashVal << 5) ^ *(key++);
 
-111
+	return hashVal % tableSize;
+}
