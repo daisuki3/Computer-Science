@@ -1,0 +1,72 @@
+void printPath(vertex v, Table T) {
+
+	if (T[v].path != -1]{
+		printPath(T[v].path,T);
+		printf("to";)
+		}
+
+	printf("%v",v); 
+}
+
+
+topologic sort O(E+V)  the body of the for loopis executed at most once per edge,the queue operations are done at most once per verte
+
+
+unwighted shortest path O(E+V):
+void unweighted(table T) {
+	queue Q;
+	vertex v, w;
+
+	enqueue(s, Q);
+
+	while (!isEmpty(Q)) {
+		v = dequeue(Q);
+
+		for each w adjacent to v //adjacency list is used
+			if (T[w].dist == inf) {      // no known field ,v konw=>
+				T[w].dist = T[v].dist + 1;   // v.dist!=inf				
+				T[w].path = v;
+				enqueue(w, Q);
+			}
+	}
+}
+
+
+weighted shortest path ( djkstra's algorithm  O(E*logV+V*logV):  
+void djkstra(Table T) { //distances need to be kept in a priority queue 
+	vertex v, w;        ///to make findSmallestDistVertex efficient
+
+	while (1) {
+		v = findSmallestDistVertex(T);
+		if (!v)
+			break;
+
+		T[v].known = true;
+		for each w adjacent to v
+			if(!T[w].known)
+				if (T[v].dist + Cvw < T[w].dist) {
+					T[w].dist = T[v] + Cvw;
+					T[w].path = v;
+				}
+	}
+}
+
+
+unweighted shortest path O(E*V):
+void weightedNegative(Table T) {
+	queue Q;
+	vertex v, w;
+
+	enqueue(s, Q);//s :start vertex
+
+	while (!isEmpty(Q)) {
+		v = dequeue(Q);   //at most v times 
+		for each w adjacent to v  //avoid negative cycle
+			if (T[v].dist + Cvw < T[w].dist) {
+				T[w].dist = T[v].dist + Cvw;
+				T[w].path = q;
+				if (w not in the queue)
+					enqueue(w, Q);
+			}
+	}
+}
