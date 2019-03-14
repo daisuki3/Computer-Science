@@ -1,0 +1,6 @@
+POTENTIAL
+
+Binomial QUEUE:a collection of heap-ordered binomial TREES
+the rank of a root in a binomial TREE is equal to the number of children
+expensive insertionsw remove trees,while cheap insetions create trees
+each insetion worst-case time O(logN)
