@@ -16,7 +16,7 @@ potential:number of HEAVY nodes
 
 
 FIBONACCI HEAPS
-1.tting nodes in leftist heaps 
+1.cuting nodes in leftist heaps 
 only need to check the FIRST log(N+1) NODES on the path from P to the 
 root
 2.lazy merging for binomial queues
