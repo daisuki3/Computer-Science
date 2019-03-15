@@ -37,3 +37,6 @@ SPLAY TREE
 zig singlerotation  1 
 zig-zag doublerotation 2
 zig-zig symmetry rotation 2
+amortized time to splay a tree with root T at node X is at most 3(R(T)-R(X))++1, which is
+O(logN)
+potential: sum logS(i)
