@@ -1,0 +1,32 @@
+RedBlanckTree : binary search tree with following properties
+1.every node is colored either red or black
+2.the root is black
+3.the children of red node must be black (no consecutive red nodes
+4.every path from a node to a NULL pointer must contain the same 
+number of black nodes
+(NULL nodes are black
+
+height of a RBT is at most 2log(N+1)
+proof:
+
+
+insert : the node to be inserted must be red 
+
+Bottom-up:
+1. parent black
+we are done immediately (trivial
+
+2. parent red
+(parent sibling black
+rotate and change color 
+
+(parent sibling red 
+need percolate up until reach a black great-grandparent when great-gandparent is red 
+
+Top-down:guarantee when parent red, sibling won't be red 
+when we see a node that has two red children, we make it red and the two children black
+(if its parent is red, we perform appropriate rotations, as mentioned in bottom-up,
+parent red, sibling black
+
+
+delete: everything boils down to being able to delete a leaf, delete a red leaf node
