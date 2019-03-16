@@ -21,12 +21,136 @@ we are done immediately (trivial
 rotate and change color 
 
 (parent sibling red 
-need percolate up until reach a black great-grandparent when great-gandparent is red 
+?????need percolate up until reach a black great-grandparent when great-gandparent is red 
+??????? must fail 
 
 Top-down:guarantee when parent red, sibling won't be red 
 when we see a node that has two red children, we make it red and the two children black
 (if its parent is red, we perform appropriate rotations, as mentioned in bottom-up,
-parent red, sibling black
+parent red, sibling black rotation
 
 
 delete: everything boils down to being able to delete a leaf, delete a red leaf node
+
+
+
+#include<iostream>
+using namespace std;
+
+struct RBTnode;
+typedef struct RBTnode *RBT;
+typedef enum ColorTpe{red,black} Colortype;
+RBT X,P,GP;
+
+RBT singleRotationWithLeft(RBT root);
+RBT singleRotaionWithRight(RBT root);
+RBT doubleRotaionWithLeft(RBT root);
+RBT doubleRotaionWithRight(RBT root);
+
+struct RBTnode{
+    int data;
+    RBT left;
+    RBT right;
+    Colortype color;
+};
+
+RBT singleRotationWithLeft(RBT root){
+    RBT node= root->left;
+    root->left=node->right;
+    node->right=node;
+
+    return node;
+}
+
+RBT singleRotaionWithRight(RBT root){
+    RBT node=root->right;
+    root->right=node->left;
+    node->left=root;
+
+    return node;
+}
+
+RBT doubleRotaionWithLeft(RBT root){
+    root->left=singleRotaionWithRight(root->left);
+    root=singleRotationWithLeft(root);
+
+    return root;
+}
+
+RBT doubleRotaionWithRight(RBT root){
+    root->right=singleRotationWithLeft(root->right);
+    root=singleRotaionWithRight(root);
+
+    return root;
+}
+
+void blackSiblingRotate(){  //the GP position must be black after rotating
+
+    if(P->data < GP->data){
+        if(X->data < P->data){   //P is the mew root
+            P->color=black;
+            GP->color=red;
+            GP=singleRotationWithLeft(GP);//GP=P 
+    }
+        else if(X->data > P->data){ // X is the new root
+            X->color=black;
+            GP->color=red;
+            GP=doubleRotaionWithLeft(GP);//GP=X
+            P=X;
+    }
+}
+    else if(P->data > GP->data){
+        if(X->data > P->data){
+            P->color=black;
+            GP->color=red;
+            GP=singleRotationWithLeft(GP);//GP=P
+        }
+        else if(X->data < P->data){
+            X->color=black;
+            GP->color=red;
+            GP=doubleRotaionWithRight(GP);//GP=X
+            P=X;
+        }
+    }
+}
+
+void handleTwoRedChild(){
+    X->color=red;
+    X->left->color=black;
+    X->right->color=black;
+
+    if(P->color==red) //P can't be root, root->color is black
+        blackSiblingRotate();
+}
+
+RBT insert(int item,RBT root){
+    X=P=GP=root;
+    while(X){
+        if(item==X->data) // item already in RBT
+            return root;
+
+        if(X->left->color==red && X->right->color==red)
+            handleTwoRedChild();
+        GP=P;P=X;
+
+        if(item<X->data)
+            X=X->left;
+        else
+            X=X->right;
+    }
+    
+    RBT newNode=new struct RBTnode;
+    newNode->data=item;
+    newNode->left=newNode->right=NULL;
+    newNode->color=red;
+    X=newNode;
+    if(item<P->data)
+        P->left=newNode;
+    else
+        P->right=newNode;
+
+    if(P->color==red)
+        blackSiblingRotate();
+
+    return root;
+}
