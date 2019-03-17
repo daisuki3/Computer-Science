@@ -33,8 +33,8 @@ when we see a node that has two red children, we make it red and the two childre
 (if its parent is red, we perform appropriate rotations, as mentioned in bottom-up,
 parent red, sibling black rotation
 
-
-delete: everything boils down to being able to delete a leaf, delete a red leaf node
+delete: everything boils down to being able to delete a leaf, delete a red leaf node,
+top-down,guarantee that X must be red, or it must go to the next red node later on
 
 
 
@@ -44,7 +44,7 @@ using namespace std;
 struct RBTnode;
 typedef struct RBTnode *RBT;
 typedef enum ColorTpe{red,black} Colortype;
-RBT X,P,GP;
+RBT X,T,P,GP;
 
 RBT singleRotationWithLeft(RBT root);
 RBT singleRotaionWithRight(RBT root);
@@ -57,6 +57,15 @@ struct RBTnode{
     RBT right;
     Colortype color;
 };
+
+RBT findMin(RBT root){
+    if(!root)
+        return root;
+    RBT temp=root;
+    while(temp->left)
+        temp=temp->left;
+    return temp;
+}
 
 RBT singleRotationWithLeft(RBT root){
     RBT node= root->left;
@@ -127,7 +136,7 @@ void handleTwoRedChild(){
         blackSiblingRotate();
 }
 
-RBT insert(int item,RBT root){
+RBT Insert(int item,RBT root){
     X=P=GP=root;
     while(X){
         if(item==X->data) // item already in RBT
@@ -135,6 +144,7 @@ RBT insert(int item,RBT root){
 
         if(X->left->color==red && X->right->color==red)
             handleTwoRedChild();
+
         GP=P;P=X;
 
         if(item<X->data)
@@ -156,5 +166,156 @@ RBT insert(int item,RBT root){
     if(P->color==red)
         blackSiblingRotate();
 
+    return root;
+}
+
+RBT Delete(int item,RBT root){
+    T=X=P=root;
+
+    if(X->left->color==black && X->right->color==black)
+        X->color=red;
+    else if(X->left->color==black && !(item>X->data)){
+        X=singleRotaionWithRight(X);
+        X->color=black;
+        X=X->left;
+        X->color=red;
+    }
+    else if(X->right->color==black && !(item<X->data)){
+        X=singleRotationWithLeft(X);
+        X->color=black;
+        X=X->right;
+        X->color=red;
+    }
+
+    while(X){
+        if(X->color==black){
+            if(X==P->left){
+                if(X->left->color==black && X->right->color==black){
+                    if(T->left->color==black && T->right->color==black){
+                        P->color=black;
+                        X->color=T->color=red;
+                    }
+                    else if(T->left->color==red){
+                        P=doubleRotaionWithRight(P);
+                        P=P->left;
+                        P->color=black;
+                        X=P->left;
+                        X->color=red;
+                    }
+                    else if(T->right->color==red){
+                        P=singleRotationWithLeft(P);
+                        P->color=red;
+                        P->right->color=black;
+                        P=P->left;
+                        P->color=black;
+                        X=P->left;
+                        X->color=red;
+                    }
+                }
+                else if(X->left->color==black && !(item>X->data)){
+                    X=singleRotaionWithRight(X);
+                    X->color=black;
+                    X=X->left;
+                    X->color=red;
+                }
+                else if(X->right->color==black && !(item<X->data)){
+                    X=singleRotationWithLeft(X);
+                    X->color=black;
+                    X=X->right;
+                    X->color=red;
+                }
+            }
+            else{// X==P->right
+                if(X->left->color==black && X->right->color==black){
+                    if(T->left->color==black && T->right->color==black){
+                        P->color=black;
+                        T->color=X->color=red;
+                    }
+                    else if(T->right->color==red){
+                        P=doubleRotaionWithLeft(P);
+                        P=P->right;
+                        P->color=black;
+                        X=P->right;
+                        X->color=red;
+                    }
+                    else if(T->left->color==red){
+                        P=singleRotationWithLeft(P);
+                        P->color=red;
+                        P->left->color=black;
+                        P=P->right;
+                        X=P->right;
+                        X->color=red;
+                    }
+                }
+                else if(X->left->color==black && !(item>X->data)){
+                    X=singleRotaionWithRight(X);
+                    X->color=black;
+                    X=X->left;
+                    X->color=red;
+                }
+                else if(X->right->color==black && !(item<X->data)){
+                    X=singleRotationWithLeft(X);
+                    X->color=black;
+                    X=X->right;
+                    X->color=red;
+                }
+            }
+        }
+
+        if(item==X->data){
+            if(X==P->left){
+                if(!X->right){
+                    P->left=X->left;
+                    delete X;
+                    break;
+                }
+                else if(!X->left){
+                    P->left=X->right;
+                    delete X;
+                    break;
+                }
+                else{ // X has two child
+                    RBT temp=findMin(X->right);
+                    X->data=temp->data;
+                    P=X;
+                    X=X->right;
+                    T=X->left;
+                }
+            }
+            else{//X==P->right
+                if(!X->right){
+                    P->right=X->left;
+                    delete X;
+                    break;
+                }
+                else if(!X->left){
+                    P->right=X->right;
+                    delete X;
+                    break;
+                }
+                else{ // X has two child
+                    RBT temp=findMin(X->right);
+                    X->data=temp->data;
+                    P=X;
+                    X=X->right;
+                    T=X->left;
+                }
+
+            }
+
+        }
+        else if(item<X->data){
+            P=X;
+            X=X->left;
+            T=X->right;
+        }
+        else if(item>X->data){
+            P=X;
+            X=X->right;
+            T=X->left;
+        }
+    }
+
+    root->color=black;
     return root;
 }
