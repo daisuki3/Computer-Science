@@ -3,12 +3,16 @@ RedBlanckTree : binary search tree with following properties
 2.the root is black
 3.the children of red node must be black (no consecutive red nodes
 4.every path from a node to a NULL pointer must contain the same 
-number of black nodes
+number of black nodes   //why?
 (NULL nodes are black
 
 height of a RBT is at most 2log(N+1)
 proof:
-
+h(v) height
+bh(v) black height (no v itself
+lemma  tree V has at least 2^bh(v) - 1 nodes 
+bh(v) >= h(v)/2
+n>= 2^(h(v)/2) -1 => h(v)<= 2log(N+1)
 
 insert : the node to be inserted must be red 
 
