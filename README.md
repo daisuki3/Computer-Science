@@ -1,2 +1,2 @@
 # notes
-some notes
+some notes while learning 
