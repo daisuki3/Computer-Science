@@ -118,6 +118,26 @@ int Median3(int *A, int left, int right) {
 	return A[right - 1];
 }
 
+void percUp(int *a,int n){
+	if(n==1) return;
+	for(int i=(n-1-1)/2;i>=0;--i){
+		int child=2*i+1;
+		if(child+1<n && a[child+1]>a[child])
+			++child;
+		if(a[i]<a[child])
+			Swap(&a[i],&a[child]);
+	}
+}
+
+void HeapSort(int *a,int n){
+	percUp(a,n);
+
+	for(int j=n;j>1;--j){
+		Swap(&a[0],&a[j-1]);
+		percUp(a,j-1);
+	}
+}
+
 void PrintArray(int *A,int n) {
 	for (int i = 0; i < n; i++) {
 		cout << A[i]<<" ";
