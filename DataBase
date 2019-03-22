@@ -1,2 +1,12 @@
 structured query language 
 extensible markup language
+
+CREAT TABLE (
+)
+
+DROP TABLE R;
+ALTER TABLE R DROP name;
+ALTER TABLE R ADD test CHAR(10) DEFAULT 'NMSL';
+
+PRIMARY KEY  attributes in S are not allowed to have NULL as a value for their components 
+NULL is permitted if the set S is declared UNIQUE,however.
