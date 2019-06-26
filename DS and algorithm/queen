@@ -28,7 +28,7 @@ void lay(int i){
 
     while(++j <= QUEUE){
 
-        if(a[j]+b[QUEUE+j-i]+c[QUEUE+j+i]==0){//判断师傅可以放置 
+        if(a[j]+b[QUEUE+j-i]+c[QUEUE+j+i]==0){//判断是否可以放置 
 
             a[j]=b[QUEUE+j-i]=c[QUEUE+j+i]=1;//现在不可放置了
 
