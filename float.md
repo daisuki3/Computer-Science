@@ -8,7 +8,7 @@ k = 11
 n = 52
 
 ---
-**V = (-1)<sup>s</sup> * 2<sup>E</sup> * M **
+** V = (-1)<sup>s</sup> * 2<sup>E</sup> * M **
 
 * normalized value  
 E = e - Bias  
