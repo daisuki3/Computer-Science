@@ -1,25 +1,23 @@
-single precision
+#single precision  
 (sign field) s=1  (exponent field)k=8  (fraction field)n=23
-double precision
+#double precision  
 s=1 k=11 n=52
 
-V=(-1)^s * 2^E * M
+V = (-1)^s * 2^E * M
 
-normalized value
-case 1:
-E=e-Bias  e=ek-1ek-2....e0 (neither akk zeros nor all ones)    Bias=2^(k-1)-1
-M=1+f    f=0.fn-1fn-2....f0
+1.normalized value  
+E = e-Bias  e = e<sub>k-1</sub>e<sub>k-2</sub>....e<sub>0</sub> (neither all zeros nor all ones)  
+Bias = 2^(k-1)-1  
+M = 1 + f    f = 0.f<sub>n-1</sub>....f<sub>0</sub>
 
-denormalized value
-case 2:
+2. denormalized value  
 exp all zeros
-E=1-Bias 
-M=f 
+E = 1 - Bias 
+M = f 
 in order to represent 0 in some special kind of bit style(all bits zeros  -0.0 and +0.0
 and represent numbers very close to 0.0
 
-case 3:
-exp all ones 
+3. exp all ones 
 fraction field all zeros :  represent infinity
 fraction field nonzero  : represent NaN not a number
 
