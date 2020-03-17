@@ -1,3 +1,4 @@
+```C
 int hash(char *key, int tableSize) {
 	unsigned int hashVal = 0;
 	while (*key)
@@ -5,14 +6,7 @@ int hash(char *key, int tableSize) {
 	
 	return hashVal % tableSize;
 }
-
-
-
-
-
-
-
-
+```
 
 **hi(x)=(hash(x)+Fi(x))%tableSize**
 
