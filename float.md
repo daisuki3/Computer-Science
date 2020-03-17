@@ -7,6 +7,7 @@ s = 1
 k = 11  
 n = 52
 
+---
 V = (-1)<sup>s</sup> * 2<sup>E</sup> * M
 
 1. normalized value  
