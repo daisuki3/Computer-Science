@@ -17,13 +17,13 @@ the right subtree of any node has more nodes than the left subtree
 
 potential:number of HEAVY nodes
 
-
+---
 FIBONACCI HEAPS
-1.cuting nodes in leftist heaps  
+- cuting nodes in leftist heaps  
 because thge maximum right path has at most log(N+1) nodes, ONLY need  
 to check the FIRST log(N+1) NODES on the path from P to the root
 
-2.lazy merging for binomial queues  
+- lazy merging for binomial queues  
 if arbitrary cuts are made in the binomial trees, the resulting forest will  
 no longer be a collection of binomial trees, and it will no longer be true that  
 the rank of every tree is at most logN
