@@ -8,7 +8,7 @@ int hash(char *key, int tableSize) {
 }
 ```
 
-**hi(x)=(hash(x)+Fi(x))%tableSize**
+**hi(x) = (hash(x) + Fi(x)) % tableSize**
 
 # conflict management
 - separate chain
