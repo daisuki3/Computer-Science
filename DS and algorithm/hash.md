@@ -12,7 +12,7 @@ int hash(char *key, int tableSize) {
 # conflict management
 - separate chain
 	require pointers
----
+
 - open addressing 
 
 	-linear probing Fi(x)=i
@@ -24,9 +24,9 @@ int hash(char *key, int tableSize) {
 
 	-double hashing Fi(x)=i*hash2(x)       
 	hash2(x)=tableSize-(x mod tableSize) and never evaluate to 0 !!
----
+
 -rehashing  (not that bad, adding a constant cost to each insertion 
 	first prime that is twice as large as the old table size  
----
+
 -extendible hashing    like b-tree !!
----
+
