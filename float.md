@@ -12,8 +12,7 @@ n = 52
 
 * normalized value  
 E = e - Bias  
-e = e<sub>k-1</sub>e<sub>k-2</sub>....e<sub>0</sub> (neither all zeros nor all ones)  
-(binary)
+e = e<sub>k-1</sub>e<sub>k-2</sub>....e<sub>0</sub> (neither all zeros nor all ones)  (binary)  
 Bias = 2<sup>k - 1</sup> - 1  
 M = 1 + f  
 f = 0.f<sub>n-1</sub>....f<sub>0</sub>
