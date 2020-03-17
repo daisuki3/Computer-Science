@@ -18,8 +18,8 @@ M = 1 + f
 f = 0.f<sub>n-1</sub>....f<sub>0</sub>
 
 * denormalized value  
-exp all zeros
-E = 1 - Bias 
+exp all zeros  
+E = 1 - Bias  
 M = f 
 in order to represent 0 in some special kind of bit style(all bits zeros  -0.0 and +0.0
 and represent numbers very close to 0.0
