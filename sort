@@ -39,7 +39,7 @@ void MergeSort(int *A, int n) {
 
 void Msort(int *A, int *tmp, int left, int right) {
 	if (left < right) {
-		int center = (left + right) / 2;
+		int center = left + (right - left) / 2;
 		Msort(A, tmp, left, center);
 		Msort(A, tmp, center + 1, right);
 		Merge(A, tmp, left, center + 1, right);
