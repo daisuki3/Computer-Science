@@ -48,6 +48,6 @@ int main()
 		s[i] = new int[n + 1];
 	}
 	MatrixChain(p, n, m, s);
-	cout << m[1][n];
+	cout << m[1][n]; // here m[1][n] = 15125 
 	return 0;
 } 
