@@ -11,7 +11,7 @@ void printPath(vertex v, Table T) {
 ```
 
 
-topologic sort O(E+V)  
+**topologic sort O(E+V)**
 the body of the for loop is executed at most once per edge, 
 the queue operations are done at most once per vertice
 
@@ -36,7 +36,7 @@ void unweighted(table T) {
 }
 ```
 
-weighted shortest path ( djkstra's algorithm  O(E*logV+V*logV):  
+**weighted shortest path aka.djkstra's algorithm  O(E*logV+V*logV)**
 
 ```
 void djkstra(Table T) { //distances need to be kept in a priority queue 
@@ -57,7 +57,7 @@ void djkstra(Table T) { //distances need to be kept in a priority queue
 	}
 }
 ```
-
+---
 ```
 weightedNegative shortest path O(E*V):
 void weightedNegative(Table T) {
@@ -80,22 +80,24 @@ void weightedNegative(Table T) {
 ```
 
 - Newwork Flow Problems 
-G , flow grapg Gf, residual graph Gr 
+graph = G 
+flow graph = Gf 
+residual graph = Gr 
 **residual graph:find new path, can change the path pattern** 
--- naive: f maximum flow  O(f*E), augmenting path can be found in O(E) 
--- tricking: 
-1. choose augmenting path with largest increase in flow 
-O(E*logCapmax) augmentations ?????????????  O(E*logV) per augmentation 
-2. choose path with least number of edges
+    - naive: f maximum flow  O(f*E), augmenting path can be found in O(E) 
+    - tricking: 
+	1. choose augmenting path with largest increase in flow 
+	O(E*logCapmax) augmentations ?????????????  O(E*logV) per augmentation 
+	2. choose path with least number of edges
 
 
 - Minimum Spanning Tree: 
--- **Prime's algorithm  O(E*logV) using binary heap** 
+    - **Prime's algorithm  O(E*logV) using binary heap** 
 The heap should order the vertices by the smallest edge-weight that connects them to 
 any vertex in the partially constructed minimum spanning tree (MST) (or infinity if no such edge exists). 
 at each step adding the cheapest possible edge from the tree to another vertex
 
--- **Kruskal's  algorithm  O(E*logE)** 
-continually to select the edges in order of smallest weight and accept an edge if it does not cause a cycle
+    - **Kruskal's  algorithm  O(E*logE)** 
+    continually to select the edges in order of smallest weight and accept an edge if it does not cause a cycle
 
 
