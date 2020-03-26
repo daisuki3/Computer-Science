@@ -90,7 +90,7 @@ residual graph = Gr
      then **O(f*E)** 
     - tricking: 
 	1. choose augmenting path with largest increase in flow  
-	~~O(E*logCapmax) augmentations ?????????????  O(E*logV) per augmentation ~~
+	~~O(E*logCapmax) augmentations ?????????????  O(E*logV) per augmentation~~
 	2. choose path with least number of edges
 
 
