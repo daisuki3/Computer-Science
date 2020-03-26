@@ -12,7 +12,7 @@ void printPath(vertex v, Table T) {
 
 
 **topologic sort O(E+V)**  
-the body of the for loop is executed at most once per edge, 
+the body of the for loop is executed at most once per edge   
 the queue operations are done at most once per vertice
 
 ```
@@ -85,7 +85,9 @@ flow graph = Gf
 residual graph = Gr  
 **residual graph : find new path, can change the path pattern** 
     - naive: 
-    f = maximum flow, then O(f*E), augmenting path can be found in O(E) 
+    f = maximum flow   
+     augmenting path can be found in O(E)   
+     then **O(f*E)** 
     - tricking: 
 	1. choose augmenting path with largest increase in flow 
 	O(E*logCapmax) augmentations ?????????????  O(E*logV) per augmentation 
