@@ -11,7 +11,7 @@ void printPath(vertex v, Table T) {
 ```
 
 
-**topologic sort O(E+V)**
+**topologic sort O(E+V)**  
 the body of the for loop is executed at most once per edge, 
 the queue operations are done at most once per vertice
 
@@ -79,9 +79,9 @@ void weightedNegative(Table T) {
 }
 ```
 
-- Newwork Flow Problems 
-graph = G 
-flow graph = Gf 
+- Newwork Flow Problems  
+graph = G   
+flow graph = Gf  
 residual graph = Gr 
 **residual graph : find new path, can change the path pattern** 
     - naive: 
