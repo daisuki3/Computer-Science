@@ -1,7 +1,9 @@
 #include <iostream>
 using namespace std;
 /*
-最终
+计算M方阵上半角
+按↘斜线顺序计算M[i][j], (i <= j)
+
 m[i][j] 代表 第i个矩阵到第j个矩阵相
 乘的最小操作数
 
