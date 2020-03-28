@@ -17,13 +17,13 @@ int height(avlTree root);
 
 avlTree singleRotationWithLeft(avlTree node1) {
 	/*
-			node1							  node2
-		   /     \						     /     \
+		    node1			      node2
+		   /     \                           /     \
 		  /       \   N                     /       \
 		node2      h(X)      ----->       h(X+1)    node1
-	   /     \									   /     \
-	  /       \	  M								  /  M    \  N
-	 h(X+1)   h(x)                               h(x)     h(X)
+	       /     \                              	   /     \
+	      /       \	M                                 /  M    \  N
+	    h(X+1)   h(x)                                 h(x)     h(X)
 
 */
 	avlTree node2 = node1->left;
