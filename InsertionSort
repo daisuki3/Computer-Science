@@ -1,7 +1,3 @@
-#include <iostream>
-#include<algorithm>
-using namespace std;
-
 void InsertionSort(int *A, int n) {                 
   // 升序排序
 	int j, p;
