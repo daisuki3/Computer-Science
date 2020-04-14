@@ -18,6 +18,9 @@ void MatrixChain(int *p, int n, int **m, int **s){
 	for(int i = 1; i <= n; i++) 
 		m[i][i] =0;
 	
+	/*↘斜线上  j - i = r(常数)
+	对右上角那个点 有 j - i = n - 1 
+	*/
 	for(int r = 1; r <= n - 1; r++)
 		for(int i = 1; i <= n - r; i++){
 			
@@ -27,6 +30,9 @@ void MatrixChain(int *p, int n, int **m, int **s){
 			s[i][j] = i;
 
 			for(int k = i + 1; k < j; k++){
+				/*探索 i + 1 到 j - 1 之间（含端点）的矩阵, 
+				找寻最适合当分割点的矩阵
+				*/
 				int t = m[i][k] + m[k + 1][j] + p[i] * p[k + 1] * p[j + 1];
 
 				if(t < m[i][j]){
