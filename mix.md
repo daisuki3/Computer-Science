@@ -117,9 +117,9 @@ BCNF:**每个非平凡FD(Function Dependency)的左边都必须是超键**
 规定每个关系的全属性集 = T
 
 1. 检查R是否属于BCNF，是就返回R
-2. 违例X->Y,计算X</sup>+<sup>,R1=X</sup>+<sup>,R2=T-X</sup>
-+<sup>
+2. 违例X->Y,计算X<sup>+</sup>,R1=X<sup>+</sup>,R2=T-X<sup>
++</sup>
 3. 计算R1和R2的最小函数依赖集
 4. 用本算法递归分解R1和R2
 
-2中计算X的闭包X</sup>+<sup>的原因,为了R1的数据一致性和完整性
+2中计算X的闭包X<sup>+</sup>的原因,为了R1的数据一致性和完整性
