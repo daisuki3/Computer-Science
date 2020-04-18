@@ -1,2 +1,2 @@
 # notes
-**about computer science**
+**about everything**
