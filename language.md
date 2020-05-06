@@ -22,7 +22,34 @@
 
 删除顺序；自下而上 派生类 - 基类
 
+## 虚基类
 
+作用；消除多重继承下的歧义
+
+声明基类为虚基类，在构造最远派生类对象时，只生成一个基类对象。
+
+```c++
+class A0{
+    //code
+    }
+
+class A1:virtual public A0{
+    //code
+    }
+
+class A2:virtual public A0{//code
+}
+
+class A3:public A1,public A2{//code
+}
+```
+
+**需要在最远派生类的构造函数中调用基类的构造函数**
+```cpp
+A3::A3():A0(),A1(),A2(){
+    //code
+    }
+```
 
 # 友元
 friend void func()  
