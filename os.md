@@ -3,11 +3,15 @@
 - Optimize for access and usage patterns
 - **Maximize sequential access, allow efficient random access**
 
+
+
 # File System Components
 - Naming: Interface to find files by name, not by blocks
 - Disk Management: collecting disk blocks into files
 - Protection: Layers to keep data secure
 - Reliability/Durability: Keeping of files durable despite crashes, media failures, attacks, etc.
+
+
 
 # 死锁
 
@@ -31,6 +35,8 @@
     1. 一次性申请资源（可能使进程发生饥饿）
     2. 运行中逐步释放使用完毕的资源
 
+
+
 # 文件系统
 
 **在磁盘上组织文件的方法**
@@ -39,3 +45,7 @@
 - 管理存储空间
 - 文件信息共享
 - 文件保密安全措施
+
+
+
+# LRU换页算法
