@@ -15,9 +15,10 @@ struct node{
 
 int height(avlTree root);
 
-avlTree singleRotationWithLeft(avlTree node1) {
+avlTree singleRotationWithLeft(avlTree node1) 
+{
 	/*
-		    node1			      node2
+		    node1			      			  node2
 		   /     \                           /     \
 		  /       \   N                     /       \
 		node2      h(X)      ----->       h(X+1)    node1

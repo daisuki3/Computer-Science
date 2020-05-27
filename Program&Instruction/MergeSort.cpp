@@ -14,6 +14,7 @@ void Msort(int *A, int *tmp, int left, int right) {
 		int center = left + (right - left) / 2;
 		Msort(A, tmp, left, center);
 		Msort(A, tmp, center + 1, right);
+		//合并两个有序序列
 		Merge(A, tmp, left, center + 1, right);
 	}
 }
