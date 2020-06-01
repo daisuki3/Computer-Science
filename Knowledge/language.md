@@ -133,7 +133,15 @@ x = z;
 
 # 构造器
 
-## java vs cpp
+构造器处理步骤
+1. 所有数据域初始化为默认值
+2. 按照类声明中的顺序依次执行域初始化语句和初始化块
+3. 如果构造器第一行调用了第二个构造器，则执行第二个构造器的主体
+4. 执行构造体主体
+
+当类**没有提供任何构造器**时，系统才会提供一个默认构造器。
+
+## java vs cpp 对象创建
 java的构造器总是伴随着new操作符的使用
 
 cpp 构造器可以不伴随new操作符
@@ -141,6 +149,19 @@ cpp 构造器可以不伴随new操作符
 ```cpp
 Employee number007("jack",1999,1,10);
 ```
+
+java构造器可调用构造器
+
+```java
+public Employee(double d)
+{
+    //调用Employee(string s, double d);
+    this("Employee #" + nextId, d);
+}
+```
+## java vs cpp 实例域初始化
+cpp中只能在构造器中初始化实例域
+java可以在类中直接初始化实例域
 
 # 更改器与访问器
 
@@ -155,3 +176,51 @@ class Example
 
 封装，保护数据X，这样以后关于X的问题
 </br>只需要在getX() setX()中调试
+
+# 析构
+
+java中没有析构器
+
+但有在垃圾回收器清楚对象之前调用的finalize方法
+# 方法参数
+
+传参方法有按值调用和按引用调用
+
+java中的对象**不是按引用调用**的 
+
+```java
+class Ex
+{
+void method(Employee A) 
+{
+    //code
+}
+}
+
+public static void main()
+{
+Ex e = new Ex();
+Employee x = new Employee();
+
+e.method(x);
+/*
+method()传递了x引用的对象(称为对象A)的值
+对象A的属性可能会变化
+但是x引用的对象不会变成对象B，只会引用对象A
+因为对象是按值传递的
+传递的是x的值而不是传递了x的引用
+*/
+}
+
+```
+
+# 方法签名
+
+方法名和参数类型构成方法的签名
+
+返回类型不属于方法签名，所以不能存在方法名和参数类型相同而**返回类型不同**的方法
+
+# cpp #include vs Java import
+
+java编译器可以查看任何文件的内部
+</br>而cpp编译器不行,所以必须在头部包含外部文件
