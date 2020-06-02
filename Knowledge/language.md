@@ -268,6 +268,9 @@ public static double max(double... values)
 }
 ```
 
+# 抽象类 & 接口
+1. 抽象类可以有实例域，接口没有实例域
+2. 一个类只能继承一个抽象类，但可以实现多个接口
 # 枚举类
 
 ``` java
