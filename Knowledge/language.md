@@ -234,3 +234,68 @@ method()传递了x引用的对象(称为对象A)的值
 
 java编译器可以查看任何文件的内部
 </br>而cpp编译器不行,所以必须在头部包含外部文件
+
+# 关于 equals()
+
+## equals() & hashcode()
+
+如果类中重新定义equals()，就必须重新定义hashcode()
+
+</br>即如果 x.equals(y) 返回true, 则 x.hashcode() == y.hashcode() 值为true
+
+## equals() & ==
+
+equals 
+- 方法
+- 可以重写用来比较对象的值
+
+==  
+- 运算符 
+- 只能比较对象地址
+
+# 参数数量可变方法
+
+``` java
+public static double max(double... values)
+{
+    //计算任意个数值的最大值
+    double largest = Double.NEGATIVE_INFINITY;
+
+    for(double v:values)
+        if(v > largest) largest = v;
+
+    return largest;
+}
+```
+
+# 枚举类
+
+``` java
+public enum size{SMALL, MEDIUM, LARGE};
+//定义了有3个实例的类，它是Enum类的子类
+```
+
+# lambda表达式
+
+``` java
+//语法
+(String s1. String s2)
+-> s1.length() - s2.length()
+
+
+//测试
+public class LambdaTest
+{
+    public static void main(String[] args)
+    {
+        /*
+        code
+        */
+        Arrays.sort(staff, (String first, String second) -> first.length() - second.length())
+
+        /*
+        code
+        */
+    }
+}
+```
