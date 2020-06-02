@@ -150,7 +150,7 @@ cpp 构造器可以不伴随new操作符
 Employee number007("jack",1999,1,10);
 ```
 
-java构造器可调用构造器
+## java构造器可在第一行调用构造器
 
 ```java
 public Employee(double d)
@@ -158,6 +158,16 @@ public Employee(double d)
     //调用Employee(string s, double d);
     this("Employee #" + nextId, d);
 }
+```
+
+```java
+public Manager(String name, double salary)
+{
+    //调用超类的构造器
+    super(name,salary);
+    bonus = 0;
+}
+
 ```
 ## java vs cpp 实例域初始化
 cpp中只能在构造器中初始化实例域
