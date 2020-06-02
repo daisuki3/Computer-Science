@@ -70,7 +70,6 @@ BCNF:**每个非平凡FD(Function Dependency)的左边都必须是超键**
 2. CAS(compare and swap)算法
 </br>读取数据时同时储存旧值a，地址v。
 </br>写入新数据b时，如果地址v处的数据值为a，才将地址v处的数据替换为b。
-
 </br>缺点：ABA问题
 
 
