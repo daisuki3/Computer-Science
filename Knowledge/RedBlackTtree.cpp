@@ -1,8 +1,8 @@
 RedBlanckTree : binary search tree with following properties
-1.every node is colored either red or black
-2.the root is black
-3.the children of red node must be black (no consecutive red nodes
-4.every path from a node to a NULL pointer must contain the same 
+1. every node is colored either red or black
+2. the root is black
+3. the children of red node must be black (no consecutive red nodes
+4. every path from a node to a NULL pointer must contain the same 
 number of black nodes   //why?
 (NULL nodes are black
 
