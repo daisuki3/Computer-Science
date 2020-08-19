@@ -1,45 +1,56 @@
 
-var m = parseInt(readline())
-var n = parseInt(readline())
+/*
+    
+    到达某个点必须经过其上方或左方
+    所以可以用动态规划求解 dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + arr[i][j]
 
+*/
+var l = readline().split(" ").map(Number)
+var m = l[0]
+var n = l[1]
+ 
+  
 var arr = [];
-
+  
 for(let i = 0; i < m; i++){
-    let line = readline().split(" ").map(Number)
+    var line = readline().split(" ").map(Number)
     arr.push(line)
 }
-
+ 
+ 
 find(arr)
-
-
-
+  
+  
+  
 function find(arr){
-    let dp = [[]]
-    dp[0][0] = arr[0][0]
-
+    let dp = []
+  
     for(let i = 0; i < m; i++){
-        let tmp = []
+         
+        dp[i] = []
+         
         for(let j = 0; j < n; j++){
-
-            if(i == 0){
-                tmp.push(dp[i][j - 1] + arr[i][j])
+              
+            if(i == 0 && j == 0){
+                dp[i][j] = arr[i][j]
+            }
+            else if(i == 0){
+                dp[i][j] = dp[i][j - 1] + arr[i][j]
+  
             }
             else if(j == 0){
-                tmp.push(dp[i - 1][j] + arr[i][j])
+                dp[i][j] = dp[i - 1][j] + arr[i][j]
             }
             else{
-                let m = Math.min(dp[i][j - 1], dp[i - 1][j]) + arr[i][j]
-                tmp.push(m)
+                dp[i][j] = Math.min(dp[i][j - 1], dp[i - 1][j]) + arr[i][j]
+               
             }
         }
-        dp.push(tmp)
     }
-
+  
     console.log(dp[m -1][n - 1])
-    
+      
 }
-
-
 
 /*
 while(true){   
