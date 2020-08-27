@@ -3,6 +3,7 @@
  * 
  * 采用归并的思路，先复制nums1，然后将其和nums2归并到nums1.
  * 
+ * 时间复杂度m + n，空间复杂度m
  * 
  * @param {number[]} nums1
  * @param {number} m

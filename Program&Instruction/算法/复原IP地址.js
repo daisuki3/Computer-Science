@@ -3,9 +3,6 @@
  * 
  * 用数组储存四段数字，第四组存完后，通过该数组得到一个答案
  * 
- * 
- * 
- * 
  * @param {string} s
  * @return {string[]}
  */
@@ -42,7 +39,7 @@ var restoreIpAddresses = function(s) {
         for(let end = start; end < s.length; end++){
             //回溯，进行下一次尝试
             num = num * 10 + (s.charAt(end) - '0')
-            
+                       
             if(num <= 255){
                 toans[order] = num
                 re(order + 1, end + 1)
