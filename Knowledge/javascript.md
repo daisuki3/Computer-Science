@@ -221,3 +221,30 @@ a.slice(1,4)
 
 a.slice(1)
 (5) [5, 7, 6, 8, 9]
+
+# 字符串
+
+js中字符串分为基本字符串和字符串对象
+
+字符串的值是不可变的，只能让变量指向新的字符串。
+
+
+```js
+a = "test"
+b = new String("test")
+
+typeof a // string
+typeof b // object
+
+a[0] = '1'
+a //"test"
+
+b[0] = '1'
+b //String {"test"}
+
+
+//由数组生产字符串的方法
+a = [1,2,3]
+a.join() //"1,2,3"
+
+```

@@ -1,5 +1,6 @@
 
-/* 稳定性：稳定
+/* 稳定性：不稳定
+   将某元素交换到队头时，可能破坏被交换元素的稳定
 */
 void SelectionSort(int *A, int n){
 	int i, j , min, tmp;

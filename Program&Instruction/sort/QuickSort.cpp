@@ -1,3 +1,10 @@
+/*
+
+	稳定性：不稳定
+	对比pivot分割数组时，可能破坏稳定性
+*/
+
+
 #define cutoff (5)
 
 void Qsort(int *, int, int);

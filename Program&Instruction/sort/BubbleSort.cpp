@@ -1,6 +1,7 @@
 
 /*	升序
 	稳定性：稳定
+	不会交换两个相等的元素
 */
 void BubbleSort(int *A, int n){
 	int j, i, tmp;

@@ -3,6 +3,16 @@
 #x id选择器 <div id="x"> 
 id是唯一的
 
+
+伪类
+:link
+:visited
+
+伪元素
+::before
+::after
+
+
 子选择符 >
 紧邻同胞选择符 +
 一般同胞选择符 ~

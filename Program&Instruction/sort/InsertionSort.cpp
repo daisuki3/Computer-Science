@@ -3,6 +3,7 @@
 
 /*	升序
 	稳定性：稳定
+	假设a与b相等，a的下标小于b，插入时，b不会放到a的前面
 */
 void InsertionSort(int *A, int n) {                 
   
