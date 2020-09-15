@@ -60,7 +60,7 @@ myObject是函数function()的返回值，也即一个对象，这个对象不�
             name: '听风是风'
         };
         let obj2 = {
-    name: '时间跳跃'
+            name: '时间跳跃'
         };
         var name = '行星飞行';
 
@@ -71,10 +71,11 @@ myObject是函数function()的返回值，也即一个对象，这个对象不�
         fn(); //行星飞行
         fn.apply(obj2); //时间跳跃
         fn(); //行星飞行
+        
         let boundFn = fn.bind(obj1);//听风是风
-    boundFn.call(obj2);//听风是风
-    boundFn.apply(obj2);//听风是风
-    boundFn.bind(obj2)();//听风是风
+        boundFn.call(obj2);//听风是风
+        boundFn.apply(obj2);//听风是风
+        boundFn.bind(obj2)();//听风是风
     ```
 
 - new绑定
