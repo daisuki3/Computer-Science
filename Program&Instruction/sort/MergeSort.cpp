@@ -1,7 +1,6 @@
 /*
 	稳定性：稳定
 	归并时，下标小的序列元素放在结果数组的前面，不会破坏稳定性
-	
 */
 
 void Msort(int *A, int *tmp, int left, int right);

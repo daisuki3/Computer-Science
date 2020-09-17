@@ -78,13 +78,13 @@ var buildTree = function(preorder, inorder) {
             s.push(node.left)
         }
         else{
+            //如果栈不为空，且node的祖先和中序遍历当前值相等，代表该node右子树为空
             while(s.length > 0 && s[s.length - 1].val === inorder[j]){
                 node = s.pop()   
                 j++
             }
             node.right = new TreeNode(preorder[i])
             s.push(node.right)
-            //指到最左的子
         }
     }
 
