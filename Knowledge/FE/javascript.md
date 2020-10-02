@@ -3,6 +3,7 @@
 1. 字符串
 2. 数值
 3. 布尔值
+
 4. null
 5. undefined
 6. 符号类型symbol new in ES6
@@ -94,6 +95,9 @@ setTimeout是异步任务中的宏任务
 
 # ES6
 
+
+
+
  var Person = (function () {
      function Person (name) {
           this._name = name;
@@ -108,6 +112,7 @@ setTimeout是异步任务中的宏任务
           }, time);
      }
 })();
+
 # 函数传值
 
 js中函数是按值传递的
@@ -249,3 +254,29 @@ a = [1,2,3]
 a.join() //"1,2,3"
 
 ```
+
+
+
+# 内存泄漏
+
+```js
+var theThing = null;
+var replaceThing = function () {
+    var originalThing = theThing;   
+    var unused = function () {
+        if(originalThing) {}
+    };
+    theThing = {
+        longStr: new Array(1000000).join('*'),
+        someMethod: function () {}
+    };
+
+};
+
+setInterval(replaceThing, 100);
+
+```
+
+以上代码内存泄漏的原因：第n次执行replaceThing函数时，unused闭包引用了第n-1次的theThing，之后replaceThing函数又重新定义了theThing，这样第n-1次的theThing无法被使用也无法被回收，导致内存泄漏。
+
+解决: 去除unuserd函数或者在replaceThing函数最后一行加上 originlThing = null。

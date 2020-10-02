@@ -27,6 +27,8 @@ id是唯一的
 - 作者嵌入样式
 - 作者行内样式
 
+重要性递增
+
 ## 层叠规则
 
 - 按照样式表来源顺序排序 和 !important 强制规则
@@ -68,4 +70,74 @@ I-C-E
 
 - 弹出层被覆盖 解决办法：设置z-index让弹出层显示在上层
 
-- position:absolute 相对于最近的relative定位父元素定位
+- position:
+static 遵循基本的定位规定
+relative 参考自身静态位置
+absolute 参考最近的具有定位设置的父元素
+fixed 参考可视窗口
+
+
+
+# 浮动 & BFC(Block Formatting Context)
+
+先来看看浮动可能造成的副作用
+
+这个例子中，浮动的图片影响有三：
+1. 父元素div.out高度塌陷，现在图片高度不再计入div.out的高度
+2. 子文本排列在图片周围
+3. 相邻文本也排列在图片周围
+
+```html
+        <div class="out">
+            <img class="float" src="../1.png">
+            </img>
+            <p>被影响的子文本</p>
+        </div>
+
+        <div class="next">
+            被影响的相邻文本
+        </div>
+```
+
+```css
+.float{
+    margin-left: 5px;
+    float:left;
+    width: 100px;
+    height: 100px;
+}
+
+.out{
+    border: 2px solid red;
+}
+
+.next{
+    margin: 20px;
+    border: 2px solid blue;
+}
+```
+
+消除这些副作用的方法；清除浮动
+
+```css
+p{
+  clear: left;
+}
+```
+
+clear:left告诉浏览器该元素的左边不能有浮动元素，所以子文本被移动到了图片下方。
+这样，虽然图片已经脱离文档流，仍然不计入div.out的高度，在div.out眼中，只是子文本的上方多出了一片空白区域。
+
+
+假如我们希望子文本排列在图片周围，而相邻文本排列在下方呢？这时候清除浮动就不起作用了。派上用场的是BFC,块级格式化上下文。它让div.out中的元素不影响外部元素。
+
+我们需要先去掉clear:left,来为div.out创建BFC。
+```css
+.out{
+  overflow:auto;
+}
+```
+
+BFC的作用主要有这几点：
+1. 浮动元素无法溢出BFC,消除浮动造成的高度塌陷
+2. 阻止外边距合并
