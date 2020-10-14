@@ -12,6 +12,10 @@
 
 # 原型链
 
+原型链可以实现继承
+优点：效率高,少了函数调用
+缺点：子类原型对象继承了父类的实例，导致所有子类实例共享该父类实例属性和方法.
+
 prototype是**生产对象的模板**。
 _proto_是**对象中指向模板的属性**。
 
@@ -280,3 +284,14 @@ setInterval(replaceThing, 100);
 以上代码内存泄漏的原因：第n次执行replaceThing函数时，unused闭包引用了第n-1次的theThing，之后replaceThing函数又重新定义了theThing，这样第n-1次的theThing无法被使用也无法被回收，导致内存泄漏。
 
 解决: 去除unuserd函数或者在replaceThing函数最后一行加上 originlThing = null。
+
+# apply & call & bind
+
+apply函数签名
+fun.apply(thisArg, [argsArray]);
+
+call函数签名
+fun.call(thisArg, arg1, arg2...);
+
+bind函数签名
+fun.bind(thisArg, arg1, arg2...)，返回一个this指向无法改变的函数
