@@ -152,3 +152,11 @@ flex-basis 分配多余空间前占据的主轴空间
 flex : 0 1 200px 对应grow,shrink,basis 不放大,不足时缩小,200px
 
 ## 容器
+
+# link & @import
+- link
+  HTML文件中的标签，可以引入除CSS的其它文件
+- @import
+  CSS中的规则，必须先于所有其他规则
+  @import url list-of-media-queries
+  
