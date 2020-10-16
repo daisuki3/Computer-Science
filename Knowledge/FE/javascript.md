@@ -174,7 +174,7 @@ window.onload = func
 - 标记-清除
     定义对象不再需要：对象无法获得
     回收期定期从根开始，寻找从根开始引用的对象，无法引用到的对象将被回收。
-    
+
 # 比较
 
 - == 只进行值的比较
@@ -319,3 +319,14 @@ fun.call(thisArg, arg1, arg2...);
 
 bind函数签名
 fun.bind(thisArg, arg1, arg2...)，返回一个this指向无法改变的函数
+
+# async & defer
+script标签的属性
+
+- 默认值，既没有async也没有defer
+    脚本的读取会阻塞html解析，脚本执行也会阻塞html解析
+- async
+    脚本的读取不会阻塞html解析，脚本执行阻塞html解析
+- defer
+    脚本的读取不会阻塞html解析，脚本在html解析完之后，DOMContentLoaded事件触发之前执行
+
