@@ -355,11 +355,26 @@ function unrepeat(arr){
 千分位格式化
 */
 function format(num){
-    if(1){
+  
 
+ 
+    let numArr = String(num).split('').reverse();
+
+    let start = numArr.indexOf('.');
+    start = start === -1 ? 0 : start + 1;
+
+    let integ = '';
+    for(let i = 1, j = start; j < numArr.length; i++,j++){
+        integ += numArr[j];
+        if(i % 3 === 0 && numArr[j + 1] !== undefined && numArr[j + 1] !== '-'){
+            integ += ',';
+        }
     }
+
+    return integ.split('').reverse().join('') + numArr.slice(0, start).reverse().join('');
 }
 
+//console.log(format(-351122312312.4443));
 /*
 函数柯里化 
 add()
@@ -389,7 +404,7 @@ function add(...args1){
 };
 
 
-console.log(add(2)(9,3));
+//console.log(add(2)(9,3)());
 
 /*
 实现promise
