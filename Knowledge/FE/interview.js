@@ -355,9 +355,6 @@ function unrepeat(arr){
 千分位格式化
 */
 function format(num){
-  
-
- 
     let numArr = String(num).split('').reverse();
 
     let start = numArr.indexOf('.');
