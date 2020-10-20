@@ -1,4 +1,44 @@
+/*
+赛马问题 64匹马 8赛道 最少场数找top4
+8 场分组赛
+9 小组头名top1 
+10 top2、3：同时决出，top2[A2,B1] top3[A3,B2,C1] A4,B3,C2
+/////////////////////////////////////不需要如果头名为A2，则1，2，3名分别为top2，3，4
+如果头名为B1，第二为C1，则1，2名为top2，3，加赛11
+其余情况，1，2，3名分别为top2，3，4
+11 加上D1进入比赛 头名为top4
 
+Vue生命周期
+init Events&Lifecycle 
+-> beforeCreate 对象创建，还未初始化
+-> init Injections & reactivity 
+-> created 初始化完成，模板还未渲染
+-> beforeMount 模板渲染成html
+-> mounted 模板已经渲染进html
+->beforeUpdate
+->updated
+->beforeDestroy
+
+Vue,React区别
+模板 vs JSX
+对象属性 vs 状态管理
+React Native vs ？
+
+前端性能优化，即提高页面加载速度，优化用户体验
+1.CSS雪碧图，避免多次请求。 background-position: -a px, -b px。
+图片左上角坐标(-a,-b)效果：图片左移a px，上移b px。
+2.延迟加载，减少首次访问时需要请求的资源。
+图片懒加载，所有图片src为loading.gif,等图片进入视窗，再将图片改为data-src属性指向的图片。
+offsetTop < scrollTop + clientHeight 加载图片
+
+
+v-model 语法糖
+v-model="sth" => :value="sth"  @input="sth = $event.target.value"
+
+HEAD 只返回头部信息 场景：判断某资源是否存在，或者获取关键信息
+
+
+*/
 /*
 foo函数返回自身被调用的次数
 考察闭包和IIFE的应用
@@ -56,11 +96,12 @@ function throttle(fn, delay){
         let now = new Date();
         if(now - pre > delay){
             pre = now;
+            console.log(this);
             fn.apply(this, arguments);
         }
     }
 };
-
+ 
 /*
 实现 call,apply,bind
 */
@@ -236,6 +277,14 @@ console.log(arr1.my_flat());
 const arr2 = [0, 1, 2, [[[3, 4]]]];
 
 console.log(arr2.my_flat(2));
+*/
+
+/*CSS三角形
+.tri{
+    height: 0;
+    width: 0;
+    border: 
+}
 */
 
 
