@@ -99,23 +99,75 @@ setTimeout是异步任务中的宏任务
 
 # ES6
 
+## 类 & 继承
+
+ES5类的实现方式
+```js
+function Person(name){
+    this.name = name;
+}
+
+Person.prototype.say = function(){
+    console.log("my name is " + name);
+}
+
+```
+ES5通过原型链的继承
+```js
+child.prototype = new Person();
+child.prototype.constructor = child;
+let c = new Child();
+/*
+弊端:
+    1.所有子类实例共享同一个父类实例，可能存在问题
+    2.无法实现多继承
+    
+优点：简单易实现
+*/
+```
+
+ES5借用构造函数的继承
+```js
+function child(){
+    Person.call(this);
+/*
+弊端：
+    1.不是父类的实例
+    2.不能继承父类原型上的属性。
+    3.父类的实例函数无法复用
+优点：
+    多继承、可向父类构造函数传参
+*/
+}
+```
 
 
+ES6语法糖
+```js
+//ES5
+function Person(name, age){
+    this.name = name;
+    this.age = age;
+}
 
- var Person = (function () {
-     function Person (name) {
-          this._name = name;
-     }
-     Person.prototype.greet = function () {
-          console.log(“Hi, my name is “ + this._name);
-     }
-     Person.prototype.greetDelay = function (time) {
-          var _this = this;
-          setTimeout(function () {
-               console.log(“Hi, my name is “ + _this.name);
-          }, time);
-     }
-})();
+Person.prototype.getName = function(){
+    return this.name;
+}
+
+
+//ES6
+
+class Person{
+    constructor(name, age){
+        this.name = name;
+        this.ag = age;
+    }
+
+    getName(){
+        return this.name;
+    }
+}
+```
 
 # 函数传值
 
@@ -235,6 +287,7 @@ var fibonacci = function(){
 
 ## splice
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
+
 fruits.splice(2, 0,"Lemon","Kiwi");
 //在索引2处添加元素，删除0个元素
 
