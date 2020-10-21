@@ -283,10 +283,16 @@ console.log(arr2.my_flat(2));
 .tri{
     height: 0;
     width: 0;
-    border: 
+    border: 30px solid transparent;
+    border-left-color: blue;
 }
 */
 
+//垂直居中
+/*
+justify-content: center; 水平居中 主轴对齐
+align-items: center; 垂直居中  交叉轴对齐
+*/
 
 // 三栏布局
 /* 
@@ -313,7 +319,13 @@ flex三栏
     background-color: green;
 }
 */
+//flex : grow默认0空间多余不放大 shrink默认1空间不够缩小 basis
 
+
+/*
+设置浮动 float：left 的原因。
+让左右两栏进入第一行。
+*/
 
 /*圣杯布局 
 容器设置margin留出空隙
@@ -451,6 +463,18 @@ function add(...args1){
 
 
 //console.log(add(2)(9,3)());
+
+/*
+用setTimeout实现setInterval
+*/
+function my_setInterval(fn, sec, ...args){
+    function interval(){
+        setTimeout(interval, sec);
+        fn(...args);
+    }
+
+    setTimeout(interval, sec);
+}
 
 /*
 实现promise
