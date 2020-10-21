@@ -411,7 +411,23 @@ position:relative 离开main到预留出的空隙上去
 function unrepeat(arr){
     return Array.from(new Set(arr));
 }
+/*
 
+1.[...new Set(arr)]
+
+2. function(arr){
+    let a = [];
+    for(let i = 0; i < arr.length; i++){
+        if(a.indexof(arr[i]) === -1){
+            a.push(arr[i]);
+        }
+    }
+
+    return a;
+}
+
+3. filter
+*/
 /*
 千分位格式化
 */
