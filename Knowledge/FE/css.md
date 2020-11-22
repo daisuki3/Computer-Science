@@ -90,7 +90,7 @@ fixed 参考可视窗口
 ```html
         <div class="out">
             <img class="float" src="../1.png">
-            </img>
+            
             <p>被影响的子文本</p>
         </div>
 
