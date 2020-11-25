@@ -160,3 +160,34 @@ flex : 0 1 200px 对应grow,shrink,basis 不放大,不足时缩小,200px
   CSS中的规则，必须先于所有其他规则
   @import url list-of-media-queries
 
+# position
+static 默认在文档流
+relative 相对于文档流中原本的位置移动
+absolute 脱离文档流 相对于第一个relative父元素定位，如果没有就是body
+fixed 在视图中固定位置
+sticky 初始行为是relative，滑动到阙值后是fixed，粘贴在最近的可滚动祖先上
+
+z-index 用来决定元素重叠时谁在上层显示
+
+# overflow
+visible 默认值 溢出盒子
+hidden 
+(also overflow-y or overflow-x)scroll
+auto 浏览器决定是否加滚动轮
+
+# value & unit
+- 绝对单位
+px pixels
+
+- 相对单位
+em 父元素font-size
+rem 根元素font-size
+vh 1% 窗口高度
+vw 1% 窗口宽度
+
+width: 50% 父元素宽度的50%
+
+margin: 10% & padding: 10% 
+都是相对父元素的宽度计算
+
+# inline & block

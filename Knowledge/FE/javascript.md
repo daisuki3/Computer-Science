@@ -8,7 +8,10 @@
 5. undefined
 6. 符号类型symbol new in ES6
 
+
 7. 对象
+
+8. bigint
 
 # 原型链
 
@@ -387,5 +390,35 @@ script标签的属性
 - async
     脚本的读取不会阻塞html解析，脚本执行阻塞html解析
 - defer
-    脚本的读取不会阻塞html解析，脚本在html解析完之后，DOMContentLoaded事件触发之前执行
+    脚本的读取不会阻塞html解析，脚本在**html解析完之后**，DOMContentLoaded事件触发之前执行
+async defer 区别？
 
+# async & await
+async 函数的返回值将会隐式地用Promise包装
+
+# for .. in & for .. of
+
+for in 以任意顺序迭代对象的**可枚举属性**
+for of 遍历可迭代对象要迭代的数据
+
+```js
+Object.prototype.objCustom = function() {}; 
+Array.prototype.arrCustom = function() {};
+
+let iterable = [3, 5, 7];
+iterable.foo = 'hello';
+
+for (let i in iterable) {
+  console.log(i); // logs 0, 1, 2, "foo", "arrCustom", "objCustom"
+}
+
+for (let i in iterable) {
+  if (iterable.hasOwnProperty(i)) {
+    console.log(i); // logs 0, 1, 2, "foo"
+  }
+}
+
+for (let i of iterable) {
+  console.log(i); // logs 3, 5, 7
+}
+```
