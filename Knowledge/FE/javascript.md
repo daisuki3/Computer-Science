@@ -1,17 +1,16 @@
 # 数据类型
 
-1. 字符串
-2. 数值
-3. 布尔值
+1. 字符串 String
+2. 数值 Number
+3. 布尔值 Boolean
 
 4. null
 5. undefined
-6. 符号类型symbol new in ES6
 
+6. 符号类型symbol new in ES6 用于唯一标识符
+7. 对象 object
 
-7. 对象
-
-8. bigint
+8. BigInt 在整数段后加n来创建BigInt
 
 # 原型链
 
@@ -292,6 +291,78 @@ var fibonacci = function(){
 ```
 
 
+# 对象
+
+## js对象类型转换
+
+js中有三种类型转换的hint string number default
+
+类型转换时会提供一个hint
+然后尝试以下
+1. obj[Symbol.toPrimitive](hint)
+2. 如果未定义，hint为String 先后尝试toString()和valueOf()
+3. 如果未定义，hint为Number或者Default 先后尝试valueOf()和toString()
+
+## Symbol.toPrimitive
+
+```js
+let user = {
+  name: "John",
+  money: 1000,
+
+  [Symbol.toPrimitive](hint) {
+    alert(`hint: ${hint}`);
+    return hint == "string" ? `{name: "${this.name}"}` : this.money;
+  }
+};
+
+// 转换演示：
+alert(user); // hint: string -> {name: "John"}
+alert(+user); // hint: number -> 1000
+alert(user + 500); // hint: default -> 1500
+
+```
+
+## valueOf & toString
+
+valueOf 返回**指定对象原始值**
+Array **数组本身**
+Function **函数本身**
+Object 默认情况**对象本身**
+
+toString 返回**表示该对象的字符串**
+
+隐式转换
+
+### 关系运算符 
+有数字时 Number()转换后比较
+两边都为字符串时 string.charCodeAt()转换后比较
+当为对象时 根据hint不同，以不同顺序尝试**valueOf**和**toString**，直到其返回值为基础类型再Number（）转换后比较
+
+[] == 0 
+// [].valueOf().toString()得到'' **Number('')得到0** 所以为true
+
+![] == 0
+//**Boolean 转换后为false的: 0 -0 undefined null NaN false ''**
+//Boolean([]) true 取反 false **Number(false)得到0** 所以为true
+
+[] == ![]
+//[].valueOf() 返回[] 再执行toString() 得到 '' 右边Boolean([])得到true 取反得到false
+//'' == false 会**Boolean('') == false** 得到 true
+
+
+[] == []
+//false 两个对象直接比较引用地址 值不同 false
+
+{} == !{}
+//toString后得到'[object object]' 而右边是false 显然得到false
+
+{} == {}
+//比较地址 false
+
+### 加法运算
+x + y
+转换后如果有一个String，都转换成String
 # 数组
 
 ## splice
@@ -312,6 +383,16 @@ a.slice(1,4)
 
 a.slice(1)
 (5) [5, 7, 6, 8, 9]
+
+## shift
+
+a=[1, 5, 4]
+
+a.shift()
+//[5, 4] 删除第一个元素，改变数组长度 
+
+a.unshift(6, 9)
+//[6, 9, 5, 4] 向队首添加元素
 
 # 字符串
 
@@ -345,7 +426,19 @@ a.join() //"1,2,3"
 
 ```
 
+# Number
 
+parseInt(string[, radix])
+根据基数radix把string解析成一个整数
+其中 2 <= radix <= 36
+
+[1, 2, 3].map(parseInt)
+// [1, NaN, NaN]
+为什么？
+因为map的签名 arr.map(function callback(curvalue[, index[, array]]){    
+}[, thisArg]
+)
+会把元素2的index 1提供给parseInt，1不在radix要求的范围内，所以返回了NaN 
 
 # 内存泄漏
 
