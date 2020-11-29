@@ -76,12 +76,12 @@ console.log(foo());
 function debounce(fn, delay){
     let id = null;
 
-    return function(args){
-        let that = this;
-        let _args = arguments;
+    return function(){
         clearTimeout(id);
-        id = setTimeout(() => fn.apply(that, _args)
+        id = setTimeout(() => fn.apply(this, arguments)
         , delay);
+        //为什么要有apply的这个this？
+        //如果没有this，防抖 对象的方法 时会找不到this，报错
     }
 };
 
@@ -91,14 +91,29 @@ function debounce(fn, delay){
 */
 function throttle(fn, delay){
     let pre = new Date();
+    let throttled = false,
+        savedArgs,
+        savedThis
 
-    return function(args){
-        let now = new Date();
-        if(now - pre > delay){
-            pre = now;
-            console.log(this);
-            fn.apply(this, arguments);
+    return function wrapper(){
+
+        if(throttled === true){
+            savedArgs = arguments;
+            savedThis = this;
         }
+
+        throttled = true;
+
+        fn.apply(this, arguments);
+        //冷却完后throttled为false,如果有冷却时错过的动作，则执行
+        setTimeout(() => {
+            throttled = false;
+            if(savedArgs){
+                wrapper.apply(savedThis, savedArgs);
+                savedArgs = savedThis = null;
+            }
+        }, delay);
+
     }
 };
  
