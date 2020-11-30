@@ -191,3 +191,8 @@ margin: 10% & padding: 10%
 都是相对父元素的宽度计算
 
 # inline & block
+
+# 居中
+
+为什么 margin：auto只能水平居中？
+因为auto是利用剩余空间，垂直高度是不确定的，所以为0。
