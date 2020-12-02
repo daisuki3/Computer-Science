@@ -3,6 +3,13 @@
  * @param {number[]} nums1
  * @param {number[]} nums2
  * @return {number}
+ * 
+ * 正常的思路是O(m + n)  全部读一遍然后取中位数
+ * 时间复杂度更好的方法：每次分别取到两个数组的中间
+ * 比较大小，然后舍弃小的那一端左边的数据
+ * 可以达到二分的时间复杂度
+ * 
+ * 
  */
 var findMedianSortedArrays = function(nums1, nums2) {
     let m = nums1.length
