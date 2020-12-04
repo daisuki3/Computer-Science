@@ -25,7 +25,7 @@
  
  当找到最深的左子后，开始处理右子。
  如果当前j等于栈顶元素，说明无右子
- 否则当前j是右子里最深的左子
+ 否则 当前j是右子里最深的左子,下一个i是右子里最浅的左子
  */
 var buildTree = function(preorder, inorder){
     if(preorder.length === 0){
@@ -41,6 +41,7 @@ var buildTree = function(preorder, inorder){
 
     while(i < preorder.length){
         
+        //给node加左子直到最深
         node = s[s.length - 1]
         while(preorder[i] !== inorder[j]){
             i++
@@ -49,13 +50,18 @@ var buildTree = function(preorder, inorder){
             s.push(node)
         }
         
-        
+        /*中序数组中
+        下一个j要么是右子。要么是父节点
+        栈顶元素是node的父节点，如果它等于j元素，说明node没有右子
+        注意栈空的情况，说明下个j一定是node的右子
+        */
         while(s.length > 0 && s[s.length - 1].val === inorder[j]){
-            //出栈意味着node的左子树已经处理完了
+            //出栈意味着上一个node没有右子
             node = s.pop()
             j++
         }
 
+        //当前i是最深的左子，下一个i一定是右子，或者超出范围
         i++
         if(i < preorder.length){
             node.right = new TreeNode(preorder[i])
