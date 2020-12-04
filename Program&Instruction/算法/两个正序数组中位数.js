@@ -4,12 +4,12 @@
  * @param {number[]} nums2
  * @return {number}
  * 
- * 正常的思路是O(m + n)  全部读一遍然后取中位数
+ * 普通的思路是O(m + n)  全部读一遍然后取中位数
  * 时间复杂度更好的方法：每次分别取到两个数组的中间
  * 比较大小，然后舍弃小的那一端左边的数据
  * 可以达到二分的时间复杂度
  * 
- * 
+ * 时间复杂度？
  */
 var findMedianSortedArrays = function(nums1, nums2) {
     let m = nums1.length
@@ -33,17 +33,17 @@ var findMedianSortedArrays = function(nums1, nums2) {
             let newi1 = Math.min(Math.floor(k / 2) - 1 + index1, m - 1)
             let newi2 = Math.min(Math.floor(k / 2) - 1 + index2, n - 1)
             
-            let newk
+            let drop
             if(nums1[newi1] <= nums2[newi2]){
-                newk = newi1 - index1 +1
+                drop = newi1 - index1 +1
                 index1 = newi1 + 1
             }
             else if(nums1[newi1] > nums2[newi2]){
-                newk = newi2 - index2 + 1
+                drop = newi2 - index2 + 1
                 index2 = newi2 + 1
             }
 
-            return getK(k - newk, index1, index2)
+            return getK(k - drop, index1, index2)
         }
 
     }
