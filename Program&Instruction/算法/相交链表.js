@@ -43,3 +43,39 @@ var getIntersectionNode = function(headA, headB) {
 
     return ta
 };
+/*
+代码太不优雅了
+去掉flag？
+
+*/
+
+while(ta !== tb){
+    ta = ta.next
+    tb = tb.next
+    if(ta === null){
+        ta = headB
+    }
+    if(tb === null){
+        tb = headA 
+    }
+}  
+
+/*
+这样写是有问题的
+如果两条链表不相交的话
+会无限循环
+能不能让链表不相交的时候也能使ta === tb？这样就不用加flag了
+当然可以
+
+*/
+
+while(ta !== tb){
+    ta = ta === null ? headB : ta.next
+    tb = tb === null ? headA : tb.next
+}
+
+/*
+之前的代码直接跳过了链表尾部后面的null
+现在
+null是两条不相交链表的ta tb走完两条链之后的归属
+*/
