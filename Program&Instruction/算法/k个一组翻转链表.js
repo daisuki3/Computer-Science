@@ -85,3 +85,52 @@ var reverseKGroup = function(head, k) {
     return dummy.next;
 
 };
+
+
+
+/*
+新解法 
+可以递归调用helper解决问题
+因为helper中，翻转完后，自然得到下一次翻转的头节点
+*/
+
+var reverseKGroup = function(head, k) {
+    
+    function helper(node){
+        if(node === null){
+            return null
+        }
+
+        let count = 0
+        let t = node
+        while(t){
+            count++
+            t = t.next
+        }
+        
+        if(count < k){
+            return node
+        }
+        else{
+            let nh = node
+
+            count = 2
+
+            while(count <= k){
+                t = node.next    
+                node.next = t.next
+
+                t.next = nh
+                nh = t
+                count++
+            }   
+
+            node.next = helper(node.next)
+
+            return nh
+        }
+
+    }
+
+    return helper(head)
+};
