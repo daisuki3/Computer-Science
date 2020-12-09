@@ -515,3 +515,50 @@ function my_setInterval(fn, sec, ...args){
 /*
 实现promise
 */
+
+/*
+promise.all
+*/
+
+function promise_all(promises){
+    let list = []
+    let len = 0
+
+    return new Promise((resolve, reject) => {
+        for(let val of promises){
+        
+            Promise.resolve(val).then(
+            data => {
+                list[i] = data
+                len++
+    
+                if(len === promises.length){
+                    resolve(list)
+                }
+            },
+            error => {
+                reject(error)
+            })
+        }
+    })
+}
+
+/*
+实现promise.race
+*/
+
+function promise_race(promises){
+
+    return new Promise((resolve, reject) => {
+        for(let val of promises){
+            Promise.resolve(val).then(
+                data => {
+                    resolve(data)
+                },
+                error => {  
+                    reject(error)
+                }
+            )
+        }
+    })
+}
