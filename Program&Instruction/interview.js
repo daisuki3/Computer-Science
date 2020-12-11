@@ -139,11 +139,11 @@ Function.prototype.my_apply = function(thisArg, args){
     return result;
 };
 
-Function.prototype.my_bind = function(thisArg, ...arg1){
+Function.prototype.my_bind = function(context, ...arg1){
 
     let self = this;
     let funcb = function(...arg2){
-        return self.call(this instanceof self ? this : thisArg, ...arg1, ...arg2);
+        return self.call(context, ...arg1, ...arg2);
     };
 
     //让funcb有this的原型方法
@@ -153,6 +153,58 @@ Function.prototype.my_bind = function(thisArg, ...arg1){
 
     return funcb;
 };
+
+/*
+b = {
+    bind: 'bbind'
+}
+
+a = {
+    bind: 'abind'
+}
+
+function fn(){
+    console.log(this.bind)
+}
+
+fn()
+fn.my_bind(b)()
+fn.my_bind(b).call(a)
+*/
+
+
+/*
+curry 包装器
+*/
+
+function curry(fn, length){
+    length = length || fn.length
+
+    let args = []
+
+    let f = function (){
+        args.push(...[].slice.call(arguments))
+        if(args.length >= length){
+            let tmp = args.slice()
+            args = []
+            return fn.apply(this, tmp)
+        }
+        return f
+    }
+
+    return f 
+
+}
+
+/*
+function ca(a, b, c){
+    console.log(a + b + c)
+}
+
+cc = curry(ca)
+cc(1)(2)(3)
+cc(7)(7)(9)
+*/
 
 /*
 实现一个new 
@@ -476,30 +528,29 @@ add()
 
 function add(...args1){
   
-    let s = args1.reduce((prev, next) => prev + next);
+    let s = args1.reduce((prev, next) => prev + next, 0);
 
     let t = function (...args2){
+        /*
         if(args2.length === 0){
             return s;
         }
-        
-        let s2 = args2.reduce((prev, next) => prev + next);
+        */
+        let s2 = args2.reduce((prev, next) => prev + next, 0);
         
         return add(s, s2);
     };
 
-  
-
-    t.toString = function(){
-        return s;
-    };
+    t.toString = s;
+   
+    t.valueOf =  s;
 
     return t;
 };
 
 
-//console.log(add(2)(9,3)());
-
+console.log(add(2)(9,3));
+console.log(add(2)(9,3,11)());
 /*
 用setTimeout实现setInterval
 */
@@ -562,3 +613,100 @@ function promise_race(promises){
         }
     })
 }
+
+/*
+实现每隔1s输出
+*/
+const list = [1, 2, 3]
+let i = 0
+const square = num => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(num * num)
+        }, 1000 * (++i))
+    })
+}
+
+let test = function (){
+
+    list.forEach(async x => {
+        const res = await square(x)
+        console.log(res)
+    })
+    
+}
+test()
+
+/*
+for(let i = 0; i < 10; i++){
+    setTimeout(() => {
+        console.log(i)
+    }, 1000 * i)
+}
+
+function inter(fn, interval, number){
+    for(let i = 1; i <= number; i++){
+        setTimeout(fn, i * interval)
+    }
+}
+
+inter(() => {console.log(1)}, 2000, 20)
+*/
+
+
+/*
+new Queue()
+    .task(1000, () => {
+        console.log(1)
+    })
+    .task(5000, () => {
+        console.log(2)
+    })
+    .task(1000, () => {
+        console.log(3)
+    })
+    .start()
+
+实现Queue类
+按上述调用时的效果是 
+1s后输出1
+再过2s后输出2 也即第3s
+再过1s后输出3 也即第4s
+*/
+class Queue {
+// todo
+    constructor(){
+        this.tasks = []
+        this.delay = 0
+    }
+
+    task(newdelay, fn){
+        this.tasks.push([this.delay + newdelay, fn])
+        this.delay += newdelay
+        console.log(this)
+        return this
+    }
+
+    start(){
+        for(let i = 0; i < this.tasks.length; i++){
+            setTimeout(this.tasks[i][1], this.tasks[i][0])
+        }   
+        this.delay = 0
+        this.tasks = []
+        return this
+    }
+    
+}
+
+
+new Queue()
+    .task(1000, () => {
+        console.log(1)
+    })
+    .task(5000, () => {
+        console.log(2)
+    })
+    .task(1000, () => {
+        console.log(3)
+    })
+    .start()
