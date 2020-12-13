@@ -683,7 +683,7 @@ class Queue {
     task(newdelay, fn){
         this.tasks.push([this.delay + newdelay, fn])
         this.delay += newdelay
-        console.log(this)
+     
         return this
     }
 
@@ -691,6 +691,7 @@ class Queue {
         for(let i = 0; i < this.tasks.length; i++){
             setTimeout(this.tasks[i][1], this.tasks[i][0])
         }   
+        
         this.delay = 0
         this.tasks = []
         return this
