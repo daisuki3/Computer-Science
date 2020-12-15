@@ -635,7 +635,8 @@ let test = function (){
     })
     
 }
-test()
+
+//test()
 
 /*
 for(let i = 0; i < 10; i++){
@@ -674,7 +675,6 @@ new Queue()
 再过1s后输出3 也即第4s
 */
 class Queue {
-// todo
     constructor(){
         this.tasks = []
         this.delay = 0
@@ -699,7 +699,7 @@ class Queue {
     
 }
 
-
+/*
 new Queue()
     .task(1000, () => {
         console.log(1)
@@ -711,3 +711,80 @@ new Queue()
         console.log(3)
     })
     .start()
+*/
+
+/*
+带并发限制的异步调度器
+*/
+
+/*
+思路
+task本身是一个promise
+
+add(task)返回一个promise  
+并发上限时添加task到buffer
+足够时直接run(task)
+
+run(task) 
+添加任务数，以检查并发上限
+task结束时resolve add(task)返回的那个Promise
+检查缓存队列，如果有则run(newTask)
+*/
+class Scheduler {
+    constructor(){
+        this.tasksNum = 0    
+        this.buffer = []
+    }  
+    
+    add(task) {
+
+        return new Promise((resolve, reject) => {
+            task.finish = resolve
+
+            if(this.tasksNum < 2){
+                this.run(task)
+            
+            }
+            else{
+                this.buffer.push(task)
+            }
+        })
+    }
+
+    run(task){
+        this.tasksNum++
+        task().then(() => {
+            task.finish()
+            this.tasksNum--
+            if(this.buffer.length > 0){
+                this.run(this.buffer.shift())
+            }
+        })
+    }
+}
+
+const timeout = (time) => new Promise(resolve => {
+  setTimeout(resolve, time)
+}) 
+
+const scheduler = new Scheduler() 
+
+const addTask = (time, order) => {
+  scheduler
+  .add(() => timeout(time))
+  .then(() => console.log(order))
+}
+
+addTask(1000, '1')
+addTask(500, '2')
+
+addTask(300, '3')
+addTask(400, '4') 
+
+// output: 2 3 1 4 
+// 一开始，1、2两个任务进入队列 
+// 500ms时，2完成，输出2，任务3进队 
+// 800ms时，3完成，输出3，任务4进队 
+// 1000ms时，1完成，输出1 
+// 1200ms时，4完成，输出4 
+
