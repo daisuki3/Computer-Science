@@ -10,8 +10,6 @@
 最右端如果没有以start为短板的盆
 说明start是高板
 从末尾到start，倒序再调用一次函数
-
-
 */
 class Solution {
     public int trap(int[] height) {
