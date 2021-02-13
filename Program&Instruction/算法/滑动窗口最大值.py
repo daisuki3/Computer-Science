@@ -1,5 +1,9 @@
 class Solution:
+    
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        '''
+        暴力方法只能过47/60个样例
+        '''
         n = len(nums)
         ans = [-sys.maxsize - 1] * (n - k + 1) 
         
