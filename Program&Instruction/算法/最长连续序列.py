@@ -41,7 +41,6 @@ class UnionFindSet:
             b_parent = self.find(b)
             self.parent_dict[a_parent] = b_parent
             self.family_num[b_parent] += self.family_num[a_parent]
-            #print("add %d %d now num: %d" % (a_parent, b_parent, self.family_num[b_parent]))
             del self.family_num[a_parent]
 
     def find(self, num):
