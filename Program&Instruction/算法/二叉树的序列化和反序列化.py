@@ -106,7 +106,7 @@ class Codec:
     ，左右子树入队列，更新孩子指针。
     虚拟None:什么也不做。因为虚拟node是没有孩子的，它不能去影响孩子指针。
 
-    '''
+    
     def serialize(self, root):
         """Encodes a tree to a single string.
         
@@ -155,8 +155,54 @@ class Codec:
                     q.put(node.right)
                 i += 1
         return root            
+    '''
 
+    '''
+    我为什么需要一个队列？为了维持秩序！
+    为了序列化时的秩序被反序列化捕捉到。
+    那我可以直接用dfs来维持秩序啊。就不需要再去频繁的入队，出队。
+    '''
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        
+        :type root: TreeNode
+        :rtype: str
+        """
+        ans = []
+
+        def dfs(node):
+            if not node:
+                ans.append("x")
+                return 
             
+            ans.append(str(node.val))
+            dfs(node.left)
+            dfs(node.right)
+
+        dfs(root)
+
+        return ",".join(ans)
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        :type data: str
+        :rtype: TreeNode
+        """
+        data = data.split(",")
+        self.i = 0
+        def dfs():
+            
+            if self.i >= len(data) or data[self.i] == "x":
+                self.i += 1
+                return
+            node = TreeNode(int(data[self.i]))
+            self.i += 1
+            node.left = dfs()
+            node.right = dfs()
+            return node
+        
+        return dfs()
+        
 
 # Your Codec object will be instantiated and called as such:
 # ser = Codec()
