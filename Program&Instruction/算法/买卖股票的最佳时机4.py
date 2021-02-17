@@ -1,5 +1,42 @@
+'''
+                上一天买的        今天才买
+buy[i][j] = max(buy[i - 1][j], sell[i - 1][j - 1] - prices[i]) 
+在第i天恰好第j次买入的最大利润
+                上一天卖的          今天才卖
+sell[i][j] = max(sell[i - 1][j], buy[i - 1][j] + prices[i]) 
+在第i天恰好第j次卖出的最大利润
+
+边界：
+如何处理第一维的i - 1 给i == 0单独设置值
+如何处理第二维的j - 1 [i][0]都设置为0
 class Solution:
     def maxProfit(self, k: int, prices: List[int]) -> int:
+        n = len(prices)
+        if n == 0:
+            return 0
+        buy = [[0] * (k + 1) for _ in range(n)]
+        sell = [[0] * (k + 1) for _ in range(n)]
+
+        for i in range(k + 1):
+            buy[0][i] = -prices[0]
+            sell[0][i] = 0
+
+        i = 1
+        while i < n:
+            buy[i][0] = 0
+            sell[i][0] = 0
+            j = 1
+            while j <= k:
+                buy[i][j] = max(buy[i - 1][j], sell[i - 1][j - 1] - prices[i])
+                sell[i][j] = max(sell[i - 1][j], buy[i - 1][j] + prices[i])
+                j +=1
+        
+            i += 1
+
+        return max(sell[n - 1])
+'''
+class Solution:
+    def maxProfit(self, k: int, prices) -> int:
         
         if len(prices) == 0:
             return 0
