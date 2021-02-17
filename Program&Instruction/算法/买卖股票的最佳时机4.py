@@ -7,8 +7,8 @@ sell[i][j] = max(sell[i - 1][j], buy[i - 1][j] + prices[i])
 在第i天恰好第j次卖出的最大利润
 
 边界：
-如何处理第一维的i - 1 给i == 0单独设置值
-如何处理第二维的j - 1 [i][0]都设置为0
+如何处理第一维的i - 1 给i == 0单独设置值 buy[0][i] = -prices[0] sell[0][i] = 0
+如何处理第二维的j - 1 给j == 0单独设置 buy and sell[i][0]都设置为0
 class Solution:
     def maxProfit(self, k: int, prices: List[int]) -> int:
         n = len(prices)
