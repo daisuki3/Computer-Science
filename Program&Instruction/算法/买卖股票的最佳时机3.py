@@ -1,10 +1,11 @@
+'''
 class Solution:
     def maxProfit(self, prices) -> int:
         buy_price = prices[0]
         turns = [0] * 2
-        '''
+
         得到两笔最赚的交易
-        '''
+     
         turn = 0
         i = 1
         p = 0
@@ -27,3 +28,21 @@ class Solution:
                 turn = 0
             i += 1
         return sum(turns)
+'''
+class Solution:
+    def maxProfit(self, prices) -> int:
+        buy1 = -prices[0]
+        sell1 = 0
+        buy2 = -prices[0]
+        sell2 = 0
+        
+        i = 1
+        while i < len(prices):
+            buy1 = max(buy1, -prices[i])
+            sell1 = max(sell1, buy1 + prices[i])
+            buy2 = max(buy2, sell1 - prices[i])
+            #print(i,buy2)
+            sell2 = max(sell2, buy2 + prices[i])
+            i += 1
+
+        return sell2
