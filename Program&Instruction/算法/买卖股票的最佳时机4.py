@@ -35,6 +35,17 @@ class Solution:
 
         return max(sell[n - 1])
 '''
+'''
+如何把dp数组从二维降到一维？    
+        
+buy[j] = max(buy[j], sell[j - 1] - prices[i])
+       = max(buy[i - 1][j], sell[i - 1][j - 1] - prices[i], buy[i - 1][j - 1])
+       = max(buy[i - 1][j], sell[i - 1][j - 1] - prices[i])
+       
+sell[j] = max(sell[j], buy[j] + prices[i])
+        = max(sell[i - 1][j], buy[i - 1][j] + prices[i], 
+        sell[i - 1][j - 1] - prices[i] + prices[i])
+'''
 class Solution:
     def maxProfit(self, k: int, prices) -> int:
         
