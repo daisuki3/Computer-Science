@@ -1,3 +1,21 @@
+'''
+戳破一个气球后，会使本不相邻的气球相邻，用普通的DP很难处理。
+采取反向的思路，向nums中添加气球。
+dp[i][j]为向区间(i, j)中添加第一个气球能得到的最大值
+dp[i][j] = max(k in [i+1, j-1]) dp[i][k] + nums[i] * nums[k] * nums[j] + dp[k][j]
+
+      j
+    0 1 2 
+  i 1 
+    2
+现在确定dp顺序
+(k in [i+1, j-1])
+根据dp[i][k]可以确定是从左往右
+根据dp[k][j]可以确定是从下往上
+
+边界：
+因为是开区间，所以要得到添加完所有气球的最优解，还需要手动添加左右边界。
+'''
 class Solution:
     def maxCoins(self, nums) -> int:
         if len(nums) == 0:
