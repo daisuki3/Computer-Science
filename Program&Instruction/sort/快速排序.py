@@ -1,11 +1,12 @@
 '''
 复杂度：平均O(n * logn) 最坏，当每次pivot都是最值时达到，O(n^2)
 
-稳定性：只要left和right行走时跳过nums[i] == pivot的元素。就可以保证稳定性。
-错了。只是保证了pivot这个元素是稳定的。
+稳定性：只要left和right行走时跳过nums[i] == pivot的元素。就可以保证pivot的稳定性。
+只是保证了pivot这个元素是稳定的。
 例如 [2,  7,  3,  3,  5] pivot为5
         left    right
 这时交换7和3的位置，就会破坏元素3的稳定性。
+所以快排始终不是不保证稳定性。
 '''
 
 def quickSort(nums):
