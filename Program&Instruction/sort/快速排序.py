@@ -1,7 +1,8 @@
 '''
 复杂度：平均O(n * logn) 最坏，当每次pivot都是最值时达到，O(n^2)
 
-稳定性：只要left和right行走时跳过nums[i] == pivot的元素。就可以保证pivot的稳定性。
+稳定性：不稳定。
+只要left和right行走时跳过nums[i] == pivot的元素。就可以保证pivot的稳定性。
 只是保证了pivot这个元素是稳定的。
 例如 [2,  7,  3,  3,  5] pivot为5
         left    right

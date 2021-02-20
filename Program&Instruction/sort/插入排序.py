@@ -1,6 +1,6 @@
 '''
 复杂度: O(n^2)
-稳定性：插入时只跃过了大于nums[j]的元素，保证了稳定性
+稳定性：稳定。插入时只跃过了大于nums[j]的元素，保证了稳定性。
 '''
 def InsertionSort(nums):
     n = len(nums)
