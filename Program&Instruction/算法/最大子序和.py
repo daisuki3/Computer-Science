@@ -2,6 +2,7 @@
 连续子数组的最大和
 
 解法：前缀和，注意变量初始化，以及边界情况的处理
+时间复杂度：O(N)
 '''
 class Solution:
     def maxSubArray(self, nums):
