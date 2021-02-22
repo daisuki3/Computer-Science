@@ -16,6 +16,7 @@ var findNumberIn2DArray = function(matrix, target) {
 
     let row = 0
     let collum = matrix[0].length - 1
+    
     while(row < matrix.length && collum >= 0){
         if(matrix[row][collum] === target){
             return true
