@@ -9,14 +9,14 @@
 def dfs(i):
     if i in dfsmap:
         return dfsmap[i]
-    '''
+    
     Code 
-    '''
+    
     dfsmap[i] = ans
 
 '''
 class Solution:
-    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+    def wordBreak(self, s: str, wordDict):
         @lru_cache(None)
         
         
