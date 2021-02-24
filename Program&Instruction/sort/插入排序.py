@@ -22,7 +22,7 @@ def InsertionSort(nums):
     
 
 def main():
-    nums = [3,7,10,1,4, 9,8,5,2,6]
+    nums = D
     InsertionSort(nums)
     print(nums)
 main()
