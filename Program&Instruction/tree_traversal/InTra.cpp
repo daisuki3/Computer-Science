@@ -7,7 +7,7 @@ struct TreeNode{
 
 vector<int> InTra(TreeNode* root){
 
-    vector<int> ans;
+    vector<int> ans;                          
     stack<TreeNode*> s;
 
     TreeNode* tmp = root;
