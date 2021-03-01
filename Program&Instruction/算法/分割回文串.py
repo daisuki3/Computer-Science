@@ -1,3 +1,8 @@
+'''
+暴力搜索，找到回文串后，往后找回文串。
+把dfs的结果连起来的时候注意细节处理。
+'''
+
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
         
