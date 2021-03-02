@@ -1,3 +1,8 @@
+'''
+因为不能打劫相邻房屋
+在第i个房屋时，可以选择打劫i - 1，也可以选择i - 2和i，取较大者，dp[n - 1]就是最优解
+因为数据初始化需要用到nums[0]和nums[1]，所以注意在开头进行边界处理
+'''
 class Solution:
     def rob(self, nums: List[int]) -> int:
 
