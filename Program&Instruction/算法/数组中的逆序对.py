@@ -1,3 +1,8 @@
+'''
+朴素思路O(N^2)暴力循环
+分治？
+归并排序，左右两区都排好序，处理左区元素L时，右区的下标ri - rstart就是该左区元素L贡献的逆序对个数。
+'''
 
 class Solution:
     def reversePairs(self, nums: List[int]) -> int:
