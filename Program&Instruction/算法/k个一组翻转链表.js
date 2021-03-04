@@ -24,7 +24,6 @@ var reverseKGroup = function(head, k) {
         let node = nhead;
         let newhead = nhead;
 
-       
         while(node !== null){
             length++;
             node = node.next;
