@@ -14,21 +14,15 @@ def MSort(nums, start, end):
 
     p1 = start
     p2 = mid + 1
-    while p1 <= mid and p2 <= end:
-        if nums[p1] <= nums[p2]:
+    
+    while p1 <= mid or p2 <= end:
+        if p2 > end or (p1 <= mid and nums[p1] <= nums[p2]):
             tmp.append(nums[p1])
             p1 += 1
-        elif nums[p1] > nums[p2]:
+        else:
             tmp.append(nums[p2])
             p2 += 1
-    
-    while p1 <= mid:
-        tmp.append(nums[p1])
-        p1 += 1
-    while p2 <= end:
-        tmp.append(nums[p2])
-        p2 += 1
-    
+            
     for i in range(start, end + 1, 1):
         nums[i] = tmp[i - start]
 
