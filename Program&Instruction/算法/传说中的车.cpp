@@ -17,8 +17,11 @@ using namespace std;
 分为行和列两个子问题
 转化问题 n个不同整数 第i个点必须在[li, ri]之内
 
-把区间以li为基准进行排序，从坐标1至n依次分配车的位置。
-应该以ri为基准进行排序！！
+
+错误 -》 把区间以li为基准进行排序，从坐标1至n依次分配车的位置。
+
+应该以ri为基准进行排序！！因为坐标是从小到大进行贪心分配的。
+以ri为基准才是正确的贪心策略，首先满足ri小的车是最优的。
 */
 bool placeDimension(vector<vector<int>> X, vector<vector<int>>& Index) {
     int n = X.size();
