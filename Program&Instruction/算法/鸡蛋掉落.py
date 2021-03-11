@@ -25,7 +25,7 @@ class Solution:
         for i in range(1, k + 1):
             dp[1][i] = 1
 
-        for i in range(2, n + 1):
+        for i in range(1, n + 1):
             for j in range(2, k + 1):
     
                 # 在1 ~ i的哪个点测试是最优的
@@ -36,21 +36,27 @@ class Solution:
                 right = i
                 while left < right:
                     mid = left + (right - left) // 2
-                    lower = dp[mid - 1][k - 1]
-                    higher = dp[i - mid][k]
+                    lower = dp[mid - 1][j - 1]
+                    higher = dp[i - mid][j]
 
                     if lower < higher:
                         left = mid + 1
-                    else:
+                    elif lower > higher:
                         right = mid
+                    else:
+                        left = right = mid
                 # left : lower >= higher的第一个
+                higher_index = left
+                lower_index = left - 1
+                this = max(dp[higher_index - 1][j - 1], dp[i - higher_index][j])
+                pre = max(dp[lower_index - 1][j - 1], dp[i - lower_index][j])
                 
-                pre = max(dp[(left - 1) - 1][k - 1], dp[i - (left - 1)][k])
-                this = max(dp[left - 1][k - 1], dp[i - left][k])
-                if dp[left - 1][k - 1] < dp[i - left][k]:
+                '''
+                if dp[left - 1][j - 1] > dp[i - left][j]:
                     print("error")
-                if dp[(left - 1) - 1][k - 1] >= dp[i - (left - 1)][k]:
+                if dp[(right) - 1][j - 1] < dp[i - (right)][j]:
                     print("error")
+                '''
 
                 #print("this expect false", dp[left - 1][k - 1] < dp[i - left][k])
                 #print("pre expect true", dp[(left - 1) - 1][k - 1] < dp[i - (left - 1)][k])
